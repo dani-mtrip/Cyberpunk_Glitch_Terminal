@@ -4,6 +4,8 @@ An experimental browser-based image glitch tool with a cyberpunk terminal-style 
 
 GLITCH//TERMINAL lets you load an image, route it through layered distortion effects, paint targeted glitch masks, and export stylised corrupted stills directly from the browser.
 
+** NOTE: Desktop-first for now. Mobile support is planned, but the current layout is designed primarily for desktop and laptop browsers.**
+
 ## Screenshot
 
 ![GLITCH//TERMINAL screenshot](screenshot.png)
