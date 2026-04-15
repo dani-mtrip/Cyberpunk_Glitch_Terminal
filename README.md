@@ -1,4 +1,4 @@
-# GLITCH//TERMINAL v0.3
+# GLITCH//TERMINAL v0.4
 
 An experimental browser-based image glitch tool with a cyberpunk terminal-style interface.
 
