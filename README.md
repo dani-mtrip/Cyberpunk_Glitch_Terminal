@@ -77,7 +77,7 @@ It is not intended to be a polished commercial product yet. Right now it is more
 
 ## Status
 
-**Experimental release — v0.3**
+**Experimental release — v0.4**
 
 ## License
 
