@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GLITCH//TERMINAL v0.3</title>
+  <title>GLITCH//TERMINAL v0.4</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -22,7 +22,7 @@
       --glow-r: 0 0 16px rgba(255,58,88,0.14), 0 0 1px rgba(255,58,88,0.5);
       --h-header: 42px;
       --h-toolbar: 38px;
-      --panel-w: 230px;
+      --panel-w: 226px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -162,7 +162,7 @@
     }
 
     .ph {
-      padding: 7px 10px;
+      padding: 6px 9px;
       background: rgba(99,243,255,0.04);
       border-bottom: 1px solid var(--border);
       font-family: var(--font-mono);
@@ -180,7 +180,7 @@
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 10px;
+      padding: 8px;
       scrollbar-width: thin;
       scrollbar-color: rgba(99,243,255,0.2) transparent;
     }
@@ -190,7 +190,7 @@
     .pb::-webkit-scrollbar-thumb { background: rgba(99,243,255,0.2); border-radius: 2px; }
 
     /* ─── SECTION ─── */
-    .sec { margin-bottom: 12px; }
+    .sec { margin-bottom: 9px; }
     .sec:last-child { margin-bottom: 0; }
 
     .sec-label {
@@ -302,7 +302,7 @@
     }
 
     /* ─── SLIDERS ─── */
-    .sw { display: grid; gap: 4px; margin-bottom: 8px; }
+    .sw { display: grid; gap: 3px; margin-bottom: 6px; }
     .sw:last-child { margin-bottom: 0; }
 
     .sh {
@@ -310,37 +310,40 @@
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 10px;
       color: rgba(190,215,225,0.75);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .sv { color: var(--cyan); font-size: 9px; min-width: 22px; text-align: right; }
+    .sv { color: var(--cyan); font-size: 10px; min-width: 28px; text-align: right; }
 
     input[type="range"] {
       -webkit-appearance: none;
-      width: 100%; height: 3px;
+      width: 100%; height: 5px;
       background: linear-gradient(90deg,
-        rgba(99,243,255,0.55) calc(var(--pct,50%) * 1%),
-        rgba(255,255,255,0.07) calc(var(--pct,50%) * 1%));
-      border-radius: 2px;
+        rgba(99,243,255,0.85) calc(var(--pct,50%) * 1%),
+        rgba(255,255,255,0.12) calc(var(--pct,50%) * 1%));
+      border-radius: 3px;
       outline: none;
+      box-shadow: 0 0 0 1px rgba(99,243,255,0.08), 0 0 8px rgba(99,243,255,0.10);
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 8px; height: 8px;
-      background: var(--cyan);
-      border-radius: 1px;
+      width: 12px; height: 12px;
+      background: linear-gradient(180deg, #9ff9ff, var(--cyan));
+      border-radius: 2px;
       cursor: pointer;
-      box-shadow: 0 0 6px rgba(99,243,255,0.6);
+      border: 1px solid rgba(3,8,12,0.9);
+      box-shadow: 0 0 8px rgba(99,243,255,0.7);
     }
     input[type="range"]::-moz-range-thumb {
-      width: 8px; height: 8px;
-      background: var(--cyan);
-      border-radius: 1px;
-      border: none;
+      width: 12px; height: 12px;
+      background: linear-gradient(180deg, #9ff9ff, var(--cyan));
+      border-radius: 2px;
+      border: 1px solid rgba(3,8,12,0.9);
       cursor: pointer;
+      box-shadow: 0 0 8px rgba(99,243,255,0.7);
     }
 
     /* ─── PALETTE ─── */
@@ -382,7 +385,7 @@
       flex-shrink: 0;
     }
 
-    .toolbar button { padding: 5px 9px; font-size: 9px; }
+    .toolbar button { padding: 5px 8px; font-size: 9px; }
 
     .tb-spacer { flex: 1; }
 
@@ -494,7 +497,7 @@
     <div class="header-left">
       <div class="hbadge">SYS.VISUAL</div>
       <h1>Glitch // Terminal</h1>
-      <span class="hversion">v0.3</span>
+      <span class="hversion">v0.4</span>
     </div>
     <div class="header-right">
       <div class="status-pill">
@@ -863,7 +866,7 @@
     const palette=PALETTES[settings.palette]||PALETTES["cyan-magenta"];
     const intensity=settings.intensity/100;
     const preserve=settings.preserve/100;
-    const splitBoost=0.35+intensity*1.25;
+    const splitBoost=0.7+intensity*1.45;
     const tearBoost=0.6+intensity*1.1;
     const noiseBoost=0.65+intensity*1.1;
 
@@ -955,7 +958,7 @@
         const centerMask=Math.exp(-(dist*dist)/0.08)*preserve;
         const edgeWeight=clamp(1-centerMask,0.08,1);
 
-        const hSplit=Math.round(settings.rgbSplit*0.32*edgeWeight*splitBoost);
+        const hSplit=Math.round(settings.rgbSplit*(0.24 + edgeWeight*0.46)*splitBoost);
         const yShift=Math.round(Math.sin(yy*0.05+seed*0.01)*(1.5+settings.tearing*0.02));
 
         let r=sample(src,out.width,out.height,xx+hSplit,yy-yShift,0);
@@ -963,10 +966,12 @@
         let b=sample(src,out.width,out.height,xx-hSplit,yy+yShift,2);
 
         if(settings.chroma>0){
-          const ca=dist*settings.chroma*0.18;
+          const ca=dist*settings.chroma*0.42 + settings.chroma*0.03;
           const nx=ddx/(maxDist||1),ny=ddy/(maxDist||1);
-          r=sample(src,out.width,out.height,xx+Math.round(ca*nx),yy+Math.round(ca*ny),0);
-          b=sample(src,out.width,out.height,xx-Math.round(ca*nx),yy-Math.round(ca*ny),2);
+          const cr=sample(src,out.width,out.height,xx+Math.round(ca*nx),yy+Math.round(ca*ny),0);
+          const cb=sample(src,out.width,out.height,xx-Math.round(ca*nx),yy-Math.round(ca*ny),2);
+          r=r*0.3+cr*0.7;
+          b=b*0.3+cb*0.7;
         }
 
         if(sortedCols){
@@ -992,9 +997,11 @@
         b=b*(1-shadowMix)+palette.a[2]*shadowMix;
 
         if(settings.trails>0){
-          const trail=Math.round(settings.trails*0.18);
-          r=r*0.84+sample(src,out.width,out.height,xx+trail,yy,0)*0.16;
-          b=b*0.84+sample(src,out.width,out.height,xx-trail,yy,2)*0.16;
+          const trail=Math.round(1 + settings.trails*0.3);
+          const trailMix=Math.min(0.34, 0.08 + settings.trails/120);
+          r=r*(1-trailMix)+sample(src,out.width,out.height,xx+trail,yy,0)*trailMix;
+          g=g*(1-trailMix*0.5)+sample(src,out.width,out.height,xx,yy+Math.max(1,Math.round(trail*0.35)),1)*(trailMix*0.5);
+          b=b*(1-trailMix)+sample(src,out.width,out.height,xx-trail,yy,2)*trailMix;
         }
 
         dst[idx]  =clamp(Math.round(r*scanDim),0,255);
@@ -1243,7 +1250,7 @@
     const res=parseInt(els.exportRes.value,10);
     const rendered=renderGlitch(state.img,state.settings,state.seed,false,res,state.maskCanvas,state.maskApply,state.maskInvert);
     const link=document.createElement("a");
-    link.download=(state.fileName.replace(/\.[^.]+$/,"")||"glitch")+"-glitch-v0.3.png";
+    link.download=(state.fileName.replace(/\.[^.]+$/,"")||"glitch")+"-glitch-v0.4.png";
     link.href=rendered.toDataURL("image/png");
     link.click();
     showToast(`Exported at ${res}px`);
